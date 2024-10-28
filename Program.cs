@@ -2,38 +2,84 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-#pragma warning disable 414
-namespace std;
+public class BatteryItem
+{
+    public string ItemName { get; set; }
+    public string Type { get; set; }
+    public string Manufacturer { get; set; }
+    public string ItemID { get; set; }
+    public string ManufacturerCode { get; set; }
+    public DateTime StartDate { get; set; }
+    public DateTime EndDate { get; set; }
+    public Dictionary<int, int> ManufacturingAmounts { get; set; } = new Dictionary<int, int>();
+    public Dictionary<int, decimal> Prices { get; set; } = new Dictionary<int, decimal>();
+    public int Defects { get; set; }
+    public int EnergyCapacity { get; set; }
+    public string SizeClass { get; set; }
+}
 
+public class Player
+{
+    public string Name { get; set; }
+    public decimal Balance { get; set; } = 1000.0m; // Starting balance
 
+    public Player(string name)
+    {
+        Name = name;
+    }
+
+    public void Earn(decimal amount)
+    {
+        Balance += amount;
+        Console.WriteLine($"{Name} earned {amount} IGC. New balance: {Balance} IGC.");
+    }
+
+    public void Spend(decimal amount)
+    {
+        if (amount <= Balance)
+        {
+            Balance -= amount;
+            Console.WriteLine($"{Name} spent {amount} IGC. New balance: {Balance} IGC.");
+        }
+        else
+        {
+            Console.WriteLine($"{Name} does not have enough IGC to spend {amount}.");
+        }
+    }
+
+    public void Transfer(Player recipient, decimal amount)
+    {
+        if (amount <= Balance)
+        {
+            Balance -= amount;
+            recipient.Balance += amount;
+            Console.WriteLine($"{Name} transferred {amount} IGC to {recipient.Name}. {Name}'s new balance: {Balance} IGC. {recipient.Name}'s new balance: {recipient.Balance} IGC.");
+        }
+        else
+        {
+            Console.WriteLine($"{Name} does not have enough IGC to transfer {amount}.");
+        }
+    }
+}
 
 class Program
 {
     static void Main()
     {
-        // Path to save player data and inventory
         string playerDataFilePath = "gameData.txt";
         string inventoryFilePath = "inventory.txt";
 
-        // Load player data
         string playerData = LoadPlayerData(playerDataFilePath);
-
         if (playerData == null)
         {
-            // Collect player information if it doesn't exist
             Console.Write("Enter your name: ");
             string playerName = Console.ReadLine();
-
             Console.Write("Enter your score: ");
             string score = Console.ReadLine();
-
             Console.Write("Enter the level you're on: ");
             string level = Console.ReadLine();
 
-            // Data to save
             playerData = $"Player Name: {playerName}\nScore: {score}\nLevel: {level}";
-            
-            // Save player data
             SaveData(playerDataFilePath, playerData);
         }
         else
@@ -41,17 +87,38 @@ class Program
             Console.WriteLine("\nLoaded Player Data:\n" + playerData);
         }
 
-        // Create an empty inventory
-        List<string> inventory = new List<string>();
-
-        // Load the inventory from file if it exists
-        if (File.Exists(inventoryFilePath))
+        List<BatteryItem> inventory = new List<BatteryItem>();
+        
+        for (int i = 1; i <= 12; i++)
         {
-            inventory = LoadInventory(inventoryFilePath);
-            Console.WriteLine("\nInventory loaded from file.");
+            BatteryItem item = new BatteryItem();
+            item.ItemName = $"5 Volt Battery X{i}";
+            item.Type = "Battery";
+            item.Manufacturer = "Voltage XYZ";
+            item.ItemID = $"Item5V00{i}";
+            item.ManufacturerCode = $"5VX{i}";
+            item.StartDate = DateTime.Parse("8166-01-01").AddYears(i - 1); // Shifts start date each year
+            item.EndDate = item.StartDate.AddYears(4); // 4-year manufacturing period
+            item.ManufacturingAmounts = new Dictionary<int, int>
+            {
+                { item.StartDate.Year, 10000 }, { item.StartDate.Year + 1, 10000 },
+                { item.StartDate.Year + 2, 10000 }, { item.StartDate.Year + 3, 10000 }
+            };
+            item.Prices = new Dictionary<int, decimal>
+            {
+                { item.StartDate.Year, 1.00m }, { item.StartDate.Year + 1, 1.00m },
+                { item.StartDate.Year + 2, 1.00m }, { item.StartDate.Year + 3, 1.00m }
+            };
+            item.Defects = 100;
+            item.EnergyCapacity = 500;
+            item.SizeClass = "2 (5 cm by 7 cm)";
+            
+            inventory.Add(item);
+            Console.WriteLine($"{item.ItemName} added to inventory.");
         }
-
-        // Inventory management
+        
+        Player player = new Player("Connor");
+        
         bool running = true;
         while (running)
         {
@@ -60,9 +127,9 @@ class Program
             Console.WriteLine("2. Remove item");
             Console.WriteLine("3. View inventory");
             Console.WriteLine("4. Save and Exit");
-
+            Console.WriteLine("5. Earn Credits");
+            Console.WriteLine("6. Spend Credits");
             string choice = Console.ReadLine();
-
             switch (choice)
             {
                 case "1":
@@ -78,6 +145,16 @@ class Program
                     SaveInventory(inventoryFilePath, inventory);
                     running = false;
                     break;
+                case "5":
+                    Console.Write("Enter amount to earn: ");
+                    decimal earnAmount = Convert.ToDecimal(Console.ReadLine());
+                    player.Earn(earnAmount);
+                    break;
+                case "6":
+                    Console.Write("Enter amount to spend: ");
+                    decimal spendAmount = Convert.ToDecimal(Console.ReadLine());
+                    player.Spend(spendAmount);
+                    break;
                 default:
                     Console.WriteLine("Invalid choice, please try again.");
                     break;
@@ -85,7 +162,6 @@ class Program
         }
     }
 
-    // Save player data
     static void SaveData(string path, string data)
     {
         try
@@ -99,7 +175,6 @@ class Program
         }
     }
 
-    // Load player data
     static string LoadPlayerData(string path)
     {
         try
@@ -117,22 +192,24 @@ class Program
         }
     }
 
-    // Add an item to the inventory
-    static void AddItem(List<string> inventory)
+    static void AddItem(List<BatteryItem> inventory)
     {
+        BatteryItem item = new BatteryItem();
         Console.Write("Enter the name of the item to add: ");
-        string item = Console.ReadLine();
+        item.ItemName = Console.ReadLine();
+        // Set other properties similarly...
         inventory.Add(item);
-        Console.WriteLine($"{item} added to inventory.");
+        Console.WriteLine($"{item.ItemName} added to inventory.");
     }
 
-    // Remove an item from the inventory
-    static void RemoveItem(List<string> inventory)
+    static void RemoveItem(List<BatteryItem> inventory)
     {
         Console.Write("Enter the name of the item to remove: ");
         string item = Console.ReadLine();
-        if (inventory.Remove(item))
+        var batteryItem = inventory.Find(i => i.ItemName.Equals(item, StringComparison.OrdinalIgnoreCase));
+        if (batteryItem != null)
         {
+            inventory.Remove(batteryItem);
             Console.WriteLine($"{item} removed from inventory.");
         }
         else
@@ -141,8 +218,7 @@ class Program
         }
     }
 
-    // View the current inventory
-    static void ViewInventory(List<string> inventory)
+    static void ViewInventory(List<BatteryItem> inventory)
     {
         if (inventory.Count == 0)
         {
@@ -153,36 +229,23 @@ class Program
             Console.WriteLine("Your inventory:");
             foreach (var item in inventory)
             {
-                Console.WriteLine("- " + item);
+                Console.WriteLine($"- {item.ItemName}");
+                // Display other item properties here...
             }
         }
     }
 
-    // Save the inventory to a file
-    static void SaveInventory(string path, List<string> inventory)
+    static void SaveInventory(string path, List<BatteryItem> inventory)
     {
         try
         {
-            File.WriteAllLines(path, inventory);
+            // Format and save inventory items to file
+            File.WriteAllLines(path, new string[] { /* formatted inventory details here */ });
             Console.WriteLine("Inventory saved to file.");
         }
         catch (Exception e)
         {
             Console.WriteLine("An error occurred while saving: " + e.Message);
-        }
-    }
-
-    // Load the inventory from a file
-    static List<string> LoadInventory(string path)
-    {
-        try
-        {
-            return new List<string>(File.ReadAllLines(path));
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine("An error occurred while loading: " + e.Message);
-            return new List<string>();
         }
     }
 }
