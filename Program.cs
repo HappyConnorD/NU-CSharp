@@ -62,95 +62,72 @@ public class Player
     }
 }
 
+public class Planet
+{
+    public string Name { get; set; }
+    public List<Resource> Resources { get; set; } = new List<Resource>();
+
+    public void DisplayResources()
+    {
+        Console.WriteLine($"Planet: {Name}");
+        Console.WriteLine("Resources:");
+        foreach (var resource in Resources)
+        {
+            Console.WriteLine($"- {resource.Name} ({resource.Symbol}): {resource.Description}");
+        }
+    }
+}
+
 class Program
 {
     static void Main()
     {
-        string playerDataFilePath = "gameData.txt";
-        string inventoryFilePath = "inventory.txt";
+        // Generate resources and planets
+        List<Resource> resources = GenerateResources();
+        List<Planet> planets = GeneratePlanets(resources);
+        string planetsFilePath = "planets.txt";
 
-        string playerData = LoadPlayerData(playerDataFilePath);
-        if (playerData == null)
-        {
-            Console.Write("Enter your name: ");
-            string playerName = Console.ReadLine();
-            Console.Write("Enter your score: ");
-            string score = Console.ReadLine();
-            Console.Write("Enter the level you're on: ");
-            string level = Console.ReadLine();
-
-            playerData = $"Player Name: {playerName}\nScore: {score}\nLevel: {level}";
-            SaveData(playerDataFilePath, playerData);
-        }
-        else
-        {
-            Console.WriteLine("\nLoaded Player Data:\n" + playerData);
-        }
-
-        List<BatteryItem> inventory = new List<BatteryItem>();
-        
-        for (int i = 1; i <= 12; i++)
-        {
-            BatteryItem item = new BatteryItem();
-            item.ItemName = $"5 Volt Battery X{i}";
-            item.Type = "Battery";
-            item.Manufacturer = "Voltage XYZ";
-            item.ItemID = $"Item5V00{i}";
-            item.ManufacturerCode = $"5VX{i}";
-            item.StartDate = DateTime.Parse("8166-01-01").AddYears(i - 1); // Shifts start date each year
-            item.EndDate = item.StartDate.AddYears(4); // 4-year manufacturing period
-            item.ManufacturingAmounts = new Dictionary<int, int>
-            {
-                { item.StartDate.Year, 10000 }, { item.StartDate.Year + 1, 10000 },
-                { item.StartDate.Year + 2, 10000 }, { item.StartDate.Year + 3, 10000 }
-            };
-            item.Prices = new Dictionary<int, decimal>
-            {
-                { item.StartDate.Year, 1.00m }, { item.StartDate.Year + 1, 1.00m },
-                { item.StartDate.Year + 2, 1.00m }, { item.StartDate.Year + 3, 1.00m }
-            };
-            item.Defects = 100;
-            item.EnergyCapacity = 500;
-            item.SizeClass = "2 (5 cm by 7 cm)";
-            
-            inventory.Add(item);
-            Console.WriteLine($"{item.ItemName} added to inventory.");
-        }
+        // Write planets to a file
+        WritePlanetsToFile(planets, planetsFilePath);
         
         Player player = new Player("Connor");
-        
         bool running = true;
+        
         while (running)
         {
-            Console.WriteLine("\n--- Inventory Menu ---");
-            Console.WriteLine("1. Add item");
-            Console.WriteLine("2. Remove item");
-            Console.WriteLine("3. View inventory");
-            Console.WriteLine("4. Save and Exit");
-            Console.WriteLine("5. Earn Credits");
-            Console.WriteLine("6. Spend Credits");
+            Console.WriteLine("\n--- Main Menu ---");
+            Console.WriteLine("1. Inventory");
+            Console.WriteLine("2. Planet Information");
+            Console.WriteLine("3. Save and Exit");
+            Console.WriteLine("4. Earn Credits");
+            Console.WriteLine("5. Spend Credits");
             string choice = Console.ReadLine();
             switch (choice)
             {
                 case "1":
-                    AddItem(inventory);
+                    // Inventory management
                     break;
                 case "2":
-                    RemoveItem(inventory);
+                    Console.WriteLine("Enter planet number (1-5): ");
+                    int planetNumber = int.Parse(Console.ReadLine()) - 1;
+                    if (planetNumber >= 0 && planetNumber < planets.Count)
+                    {
+                        planets[planetNumber].DisplayResources();
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid planet number.");
+                    }
                     break;
                 case "3":
-                    ViewInventory(inventory);
-                    break;
-                case "4":
-                    SaveInventory(inventoryFilePath, inventory);
                     running = false;
                     break;
-                case "5":
+                case "4":
                     Console.Write("Enter amount to earn: ");
                     decimal earnAmount = Convert.ToDecimal(Console.ReadLine());
                     player.Earn(earnAmount);
                     break;
-                case "6":
+                case "5":
                     Console.Write("Enter amount to spend: ");
                     decimal spendAmount = Convert.ToDecimal(Console.ReadLine());
                     player.Spend(spendAmount);
@@ -162,90 +139,58 @@ class Program
         }
     }
 
-    static void SaveData(string path, string data)
+    static List<Resource> GenerateResources()
     {
-        try
+        return new List<Resource>
         {
-            File.WriteAllText(path, data);
-            Console.WriteLine("\nPlayer data successfully saved.");
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine("An error occurred: " + e.Message);
-        }
+            new Resource { Name = "Water", Symbol = "H₂O", Description = "Essential for life." },
+            new Resource { Name = "Iron", Symbol = "Fe", Description = "Crucial for the planet's core and magnetic field." },
+            new Resource { Name = "Silicon", Symbol = "Si", Description = "Key for making rocky surfaces and tech components." },
+            new Resource { Name = "Oxygen", Symbol = "O₂", Description = "Vital for breathable atmospheres." },
+            new Resource { Name = "Carbon", Symbol = "C", Description = "Forms the basis of organic life." },
+            // Add the rest of the 80 resources here...
+        };
     }
 
-    static string LoadPlayerData(string path)
+    static List<Planet> GeneratePlanets(List<Resource> resources)
     {
-        try
+        Random random = new Random();
+        List<Planet> planets = new List<Planet>();
+
+        for (int i = 1; i <= 5; i++) // Generate 5 planets for example
         {
-            if (File.Exists(path))
+            Planet planet = new Planet { Name = $"Planet {i}" };
+
+            int numberOfResources = random.Next(10, 20); // Each planet has 10-20 random resources
+            for (int j = 0; j < numberOfResources; j++)
             {
-                return File.ReadAllText(path);
+                Resource resource = resources[random.Next(resources.Count)];
+                if (!planet.Resources.Contains(resource)) // Avoid duplicates
+                {
+                    planet.Resources.Add(resource);
+                }
             }
-            return null;
+
+            planets.Add(planet);
         }
-        catch (Exception e)
-        {
-            Console.WriteLine("An error occurred: " + e.Message);
-            return null;
-        }
+
+        return planets;
     }
 
-    static void AddItem(List<BatteryItem> inventory)
+    static void WritePlanetsToFile(List<Planet> planets, string filePath)
     {
-        BatteryItem item = new BatteryItem();
-        Console.Write("Enter the name of the item to add: ");
-        item.ItemName = Console.ReadLine();
-        // Set other properties similarly...
-        inventory.Add(item);
-        Console.WriteLine($"{item.ItemName} added to inventory.");
-    }
-
-    static void RemoveItem(List<BatteryItem> inventory)
-    {
-        Console.Write("Enter the name of the item to remove: ");
-        string item = Console.ReadLine();
-        var batteryItem = inventory.Find(i => i.ItemName.Equals(item, StringComparison.OrdinalIgnoreCase));
-        if (batteryItem != null)
+        using (StreamWriter writer = new StreamWriter(filePath))
         {
-            inventory.Remove(batteryItem);
-            Console.WriteLine($"{item} removed from inventory.");
-        }
-        else
-        {
-            Console.WriteLine($"{item} not found in inventory.");
-        }
-    }
-
-    static void ViewInventory(List<BatteryItem> inventory)
-    {
-        if (inventory.Count == 0)
-        {
-            Console.WriteLine("Your inventory is empty.");
-        }
-        else
-        {
-            Console.WriteLine("Your inventory:");
-            foreach (var item in inventory)
+            foreach (var planet in planets)
             {
-                Console.WriteLine($"- {item.ItemName}");
-                // Display other item properties here...
+                writer.WriteLine($"Planet: {planet.Name}");
+                writer.WriteLine("Resources:");
+                foreach (var resource in planet.Resources)
+                {
+                    writer.WriteLine($"- {resource.Name} ({resource.Symbol}): {resource.Description}");
+                }
+                writer.WriteLine();
             }
-        }
-    }
-
-    static void SaveInventory(string path, List<BatteryItem> inventory)
-    {
-        try
-        {
-            // Format and save inventory items to file
-            File.WriteAllLines(path, new string[] { /* formatted inventory details here */ });
-            Console.WriteLine("Inventory saved to file.");
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine("An error occurred while saving: " + e.Message);
         }
     }
 }
