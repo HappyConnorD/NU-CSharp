@@ -1,0 +1,299 @@
+Item: NineVoltBatteryx1
+  Type: Battery
+  Manufacturer: Voltage XYZ
+  ItemID: ItemAC001
+  Manufacturer Code: AC1
+  Manufacturing Period:
+    Start Date: 8172
+    End Date: 8176
+  Manufactured Amounts:
+    Year 1: 14000
+    Year 2: 12000
+    Year 3: 8000
+    Year 4: 8000
+  Prices:
+    Current: 1.56 IGC
+    Initial: 0.20 IGC
+    Previous Years:
+      Year -1: 1.56 IGC
+      Year -2: 1.56 IGC
+      Year -3: 1.53 IGC
+      Year -4: 1.52 IGC
+  Defects: 2625 units
+  Energy Capacity: 900 mAh
+  Size Class: 1 (4 cm by 6.5 cm)
+
+Item: NineVoltBatteryx2
+  Type: Battery
+  Manufacturer: Voltage XYZ
+  ItemID: ItemAC001.2
+  Manufacturer Code: AC1
+  Manufacturing Period:
+    Start Date: 8174
+    End Date: 8178
+  Manufactured Amounts:
+    Year 1: 12000
+    Year 2: 18000
+    Year 3: 6000
+    Year 4: 4000
+  Prices:
+    Current: 1.59 IGC
+    Initial: 0.24 IGC
+    Previous Years:
+      Year -1: 1.59 IGC
+      Year -2: 1.57 IGC
+      Year -3: 1.55 IGC
+      Year -4: 1.52 IGC
+  Defects: 2625 units
+  Energy Capacity: 900 mAh
+  Size Class: 1 (4 cm by 6.5 cm)
+
+Item: NineVoltBatteryx3
+  Type: Battery
+  Manufacturer: Voltage XYZ
+  ItemID: ItemAC001.2
+  Manufacturer Code: AC1
+  Manufacturing Period:
+    Start Date: 8174
+    End Date: 8178
+  Manufactured Amounts:
+    Year 1: 18000
+    Year 2: 12000
+    Year 3: 10000
+    Year 4: 5000
+  Prices:
+    Current: 1.61 IGC
+    Initial: 0.25 IGC
+    Previous Years:
+      Year -1: 1.60 IGC
+      Year -2: 1.575 IGC
+      Year -3: 1.56 IGC
+      Year -4: 1.54 IGC
+  Defects: 2822 units
+  Energy Capacity: 900 mAh
+  Size Class: 1 (4 cm by 6.5 cm)
+
+Item: NineVoltBatteryx5
+  Type: Battery
+  Manufacturer: Voltage XYZ
+  ItemID: ItemAC001.2
+  Manufacturer Code: AC1
+  Manufacturing Period:
+    Start Date: 8174
+    End Date: 8178
+  Manufactured Amounts:
+    Year 1: 12000
+    Year 2: 18000
+    Year 3: 6000
+    Year 4: 4000
+  Prices:
+    Current: 1.59 IGC
+    Initial: 0.24 IGC
+    Previous Years:
+      Year -1: 1.59 IGC
+      Year -2: 1.57 IGC
+      Year -3: 1.55 IGC
+      Year -4: 1.52 IGC
+  Defects: 2625 units
+  Energy Capacity: 900 mAh
+  Size Class: 1 (4 cm by 6.5 cm)
+
+Item: NineVoltBatteryx2
+  Type: Battery
+  Manufacturer: Voltage XYZ
+  ItemID: ItemAC001.2
+  Manufacturer Code: AC1
+  Manufacturing Period:
+    Start Date: 8174
+    End Date: 8178
+  Manufactured Amounts:
+    Year 1: 12000
+    Year 2: 18000
+    Year 3: 6000
+    Year 4: 4000
+  Prices:
+    Current: 1.59 IGC
+    Initial: 0.24 IGC
+    Previous Years:
+      Year -1: 1.59 IGC
+      Year -2: 1.57 IGC
+      Year -3: 1.55 IGC
+      Year -4: 1.52 IGC
+  Defects: 2625 units
+  Energy Capacity: 900 mAh
+  Size Class: 1 (4 cm by 6.5 cm)
+
+Item: NineVoltBatteryx6
+  Type: Battery
+  Manufacturer: Voltage XYZ
+  ItemID: ItemAC001.2
+  Manufacturer Code: AC1
+  Manufacturing Period:
+    Start Date: 8174
+    End Date: 8178
+  Manufactured Amounts:
+    Year 1: 12000
+    Year 2: 18000
+    Year 3: 6000
+    Year 4: 4000
+  Prices:
+    Current: 1.59 IGC
+    Initial: 0.24 IGC
+    Previous Years:
+      Year -1: 1.59 IGC
+      Year -2: 1.57 IGC
+      Year -3: 1.55 IGC
+      Year -4: 1.52 IGC
+  Defects: 2625 units
+  Energy Capacity: 900 mAh
+  Size Class: 1 (4 cm by 6.5 cm)
+
+Item: NineVoltBatteryx7
+  Type: Battery
+  Manufacturer: Voltage XYZ
+  ItemID: ItemAC001.2
+  Manufacturer Code: AC1
+  Manufacturing Period:
+    Start Date: 8174
+    End Date: 8178
+  Manufactured Amounts:
+    Year 1: 12000
+    Year 2: 18000
+    Year 3: 6000
+    Year 4: 4000
+  Prices:
+    Current: 1.59 IGC
+    Initial: 0.24 IGC
+    Previous Years:
+      Year -1: 1.59 IGC
+      Year -2: 1.57 IGC
+      Year -3: 1.55 IGC
+      Year -4: 1.52 IGC
+  Defects: 2625 units
+  Energy Capacity: 900 mAh
+  Size Class: 1 (4 cm by 6.5 cm)
+
+Item: NineVoltBatteryx8
+  Type: Battery
+  Manufacturer: Voltage XYZ
+  ItemID: ItemAC001.2
+  Manufacturer Code: AC1
+  Manufacturing Period:
+    Start Date: 8174
+    End Date: 8178
+  Manufactured Amounts:
+    Year 1: 12000
+    Year 2: 18000
+    Year 3: 6000
+    Year 4: 4000
+  Prices:
+    Current: 1.59 IGC
+    Initial: 0.24 IGC
+    Previous Years:
+      Year -1: 1.59 IGC
+      Year -2: 1.57 IGC
+      Year -3: 1.55 IGC
+      Year -4: 1.52 IGC
+  Defects: 2625 units
+  Energy Capacity: 900 mAh
+  Size Class: 1 (4 cm by 6.5 cm)
+
+Item: NineVoltBatteryx9
+  Type: Battery
+  Manufacturer: Voltage XYZ
+  ItemID: ItemAC001.2
+  Manufacturer Code: AC1
+  Manufacturing Period:
+    Start Date: 8174
+    End Date: 8178
+  Manufactured Amounts:
+    Year 1: 12000
+    Year 2: 18000
+    Year 3: 6000
+    Year 4: 4000
+  Prices:
+    Current: 1.59 IGC
+    Initial: 0.24 IGC
+    Previous Years:
+      Year -1: 1.59 IGC
+      Year -2: 1.57 IGC
+      Year -3: 1.55 IGC
+      Year -4: 1.52 IGC
+  Defects: 2625 units
+  Energy Capacity: 900 mAh
+  Size Class: 1 (4 cm by 6.5 cm)
+
+Item: NineVoltBatteryx10
+  Type: Battery
+  Manufacturer: Voltage XYZ
+  ItemID: ItemAC001.2
+  Manufacturer Code: AC1
+  Manufacturing Period:
+    Start Date: 8174
+    End Date: 8178
+  Manufactured Amounts:
+    Year 1: 12000
+    Year 2: 18000
+    Year 3: 6000
+    Year 4: 4000
+  Prices:
+    Current: 1.59 IGC
+    Initial: 0.24 IGC
+    Previous Years:
+      Year -1: 1.59 IGC
+      Year -2: 1.57 IGC
+      Year -3: 1.55 IGC
+      Year -4: 1.52 IGC
+  Defects: 2625 units
+  Energy Capacity: 900 mAh
+  Size Class: 1 (4 cm by 6.5 cm)
+
+Item: NineVoltBatteryx11
+  Type: Battery
+  Manufacturer: Voltage XYZ
+  ItemID: ItemAC001.2
+  Manufacturer Code: AC1
+  Manufacturing Period:
+    Start Date: 8174
+    End Date: 8178
+  Manufactured Amounts:
+    Year 1: 12000
+    Year 2: 18000
+    Year 3: 6000
+    Year 4: 4000
+  Prices:
+    Current: 1.59 IGC
+    Initial: 0.24 IGC
+    Previous Years:
+      Year -1: 1.59 IGC
+      Year -2: 1.57 IGC
+      Year -3: 1.55 IGC
+      Year -4: 1.52 IGC
+  Defects: 2625 units
+  Energy Capacity: 900 mAh
+  Size Class: 1 (4 cm by 6.5 cm)
+
+Item: NineVoltBatteryx12
+  Type: Battery
+  Manufacturer: Voltage XYZ
+  ItemID: ItemAC001.2
+  Manufacturer Code: AC1
+  Manufacturing Period:
+    Start Date: 8174
+    End Date: 8178
+  Manufactured Amounts:
+    Year 1: 12000
+    Year 2: 18000
+    Year 3: 6000
+    Year 4: 4000
+  Prices:
+    Current: 1.59 IGC
+    Initial: 0.24 IGC
+    Previous Years:
+      Year -1: 1.59 IGC
+      Year -2: 1.57 IGC
+      Year -3: 1.55 IGC
+      Year -4: 1.52 IGC
+  Defects: 2625 units
+  Energy Capacity: 900 mAh
+  Size Class: 1 (4 cm by 6.5 cm)

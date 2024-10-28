@@ -1,0 +1,15 @@
+/workspaces/NU-CSharp/obj/Debug/net8.0/NU-CSharp.GeneratedMSBuildEditorConfig.editorconfig
+/workspaces/NU-CSharp/obj/Debug/net8.0/NU-CSharp.AssemblyInfoInputs.cache
+/workspaces/NU-CSharp/obj/Debug/net8.0/NU-CSharp.AssemblyInfo.cs
+/workspaces/NU-CSharp/obj/Debug/net8.0/NU-CSharp.csproj.CoreCompileInputs.cache
+/workspaces/NU-CSharp/obj/Debug/net8.0/NU-CSharp.sourcelink.json
+/workspaces/NU-CSharp/bin/Debug/net8.0/NU-CSharp
+/workspaces/NU-CSharp/bin/Debug/net8.0/NU-CSharp.deps.json
+/workspaces/NU-CSharp/bin/Debug/net8.0/NU-CSharp.runtimeconfig.json
+/workspaces/NU-CSharp/bin/Debug/net8.0/NU-CSharp.dll
+/workspaces/NU-CSharp/bin/Debug/net8.0/NU-CSharp.pdb
+/workspaces/NU-CSharp/obj/Debug/net8.0/NU-CSharp.dll
+/workspaces/NU-CSharp/obj/Debug/net8.0/refint/NU-CSharp.dll
+/workspaces/NU-CSharp/obj/Debug/net8.0/NU-CSharp.pdb
+/workspaces/NU-CSharp/obj/Debug/net8.0/NU-CSharp.genruntimeconfig.cache
+/workspaces/NU-CSharp/obj/Debug/net8.0/ref/NU-CSharp.dll
